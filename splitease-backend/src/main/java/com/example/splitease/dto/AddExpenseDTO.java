@@ -12,4 +12,5 @@ public class AddExpenseDTO {
     private Integer userId;
     private String description;
     private Double totalAmount;
+    private Double ownersShare;
 }

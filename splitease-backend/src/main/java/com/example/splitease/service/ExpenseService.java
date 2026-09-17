@@ -25,7 +25,7 @@ public class ExpenseService {
             if(groupRepository.existsById(addExpenseDTO.getGroupId())){
                 User user = userRepository.findById(addExpenseDTO.getUserId()).get();
                 Group group = groupRepository.findById(addExpenseDTO.getGroupId()).get();
-                Expense expense = new Expense(null,group,user,addExpenseDTO.getDescription(),addExpenseDTO.getTotalAmount());
+                Expense expense = new Expense(null,group,user,addExpenseDTO.getDescription(),addExpenseDTO.getTotalAmount(),addExpenseDTO.getOwnersShare());
                 return expenseRepository.save(expense);
             }
             else{
