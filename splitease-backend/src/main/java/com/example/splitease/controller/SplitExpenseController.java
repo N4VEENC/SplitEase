@@ -1,9 +1,6 @@
 package com.example.splitease.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.splitease.dto.SplitExpenseDTO;
 import com.example.splitease.model.SplitExpense;
@@ -22,5 +19,11 @@ public class SplitExpenseController {
     public SplitExpense createNewSplitExpense(@RequestBody SplitExpenseDTO splitExpenseDTO){
         return splitExpenseService.createNewSplitExpense(splitExpenseDTO);
     }
+
+    @PatchMapping("/paid/{id}")
+    public SplitExpense updateStatusOfSplit(@PathVariable Integer id){
+        return splitExpenseService.updateStatus(id);
+    }
+
 
 }

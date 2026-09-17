@@ -36,4 +36,14 @@ public class SplitExpenseService {
         }
     }
 
+    public SplitExpense updateStatus(Integer id) {
+        if(splitExpenseRepository.existsById(id)){
+            SplitExpense splitExpense = splitExpenseRepository.findById(id).get();
+            splitExpense.setStatus(PaymentStatus.PAID);
+            return splitExpenseRepository.save(splitExpense);
+
+        }else{
+            return null;
+        }
+    }
 }
