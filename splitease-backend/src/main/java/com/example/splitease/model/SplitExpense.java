@@ -1,7 +1,10 @@
 package com.example.splitease.model;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +13,9 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import org.hibernate.annotations.ColumnDefault;
+
 import com.example.splitease.model.PaymentStatus;
 
 @Entity
@@ -33,6 +39,7 @@ public class SplitExpense {
 
     @ColumnDefault("'DUE'")
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "varchar(32) default 'DUE'")
     private PaymentStatus status;
 
 
