@@ -1,0 +1,39 @@
+package com.example.splitease.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.splitease.dto.AddExpenseDTO;
+import com.example.splitease.model.Expense;
+import com.example.splitease.model.Group;
+import com.example.splitease.model.User;
+import com.example.splitease.repository.ExpenseRepository;
+import com.example.splitease.repository.GroupRepository;
+import com.example.splitease.repository.UserRepository;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
+public class ExpenseService {
+    
+    public final ExpenseRepository expenseRepository;
+    public final GroupRepository groupRepository;
+    public final UserRepository userRepository;
+
+    public Expense addExpense(AddExpenseDTO addExpenseDTO){
+        if(userRepository.existsById(addExpenseDTO.getUserId())){
+            if(groupRepository.existsById(addExpenseDTO.getGroupId())){
+                User user = userRepository.findById(addExpenseDTO.getUserId()).get();
+                Group group = groupRepository.findById(addExpenseDTO.getGroupId()).get();
+                Expense expense = new Expense(null,group,user,addExpenseDTO.getDescription(),addExpenseDTO.getTotalAmount());
+                return expenseRepository.save(expense);
+            }
+            else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
+
+}

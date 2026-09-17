@@ -26,7 +26,7 @@ import com.example.splitease.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="expensegroups")
+@Table(name="expense_groups")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
