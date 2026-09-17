@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.example.splitease.model.PaymentStatus;
 
 @Entity
 @Table(name = "split_expense")
@@ -29,6 +30,10 @@ public class SplitExpense {
     private User user;
 
     private Double share;
+
+    @ColumnDefault("'DUE'")
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus status;
 
 
 
