@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.splitease.dto.SplitExpenseDTO;
 import com.example.splitease.model.Expense;
+import com.example.splitease.model.PaymentStatus;
 import com.example.splitease.model.SplitExpense;
 import com.example.splitease.repository.ExpenseRepository;
 import com.example.splitease.repository.SplitExpenseRepository;
@@ -25,7 +26,7 @@ public class SplitExpenseService {
             if(expenseRepository.existsById(splitExpenseDTO.getExpenseId())){
                 User user = userRepository.findById(splitExpenseDTO.getUserId()).get();
                 Expense expense = expenseRepository.findById(splitExpenseDTO.getExpenseId()).get();
-                SplitExpense splitExpense = new SplitExpense(null, expense, user, splitExpenseDTO.getShare());
+                SplitExpense splitExpense = new SplitExpense(null, expense, user, splitExpenseDTO.getShare(),PaymentStatus.DUE);
                 return splitExpenseRepository.save(splitExpense);
             }else{
                 return null;
@@ -35,4 +36,14 @@ public class SplitExpenseService {
         }
     }
 
+    public SplitExpense updateStatus(Integer id) {
+        if(splitExpenseRepository.existsById(id)){
+            SplitExpense splitExpense = splitExpenseRepository.findById(id).get();
+            splitExpense.setStatus(PaymentStatus.PAID);
+            return splitExpenseRepository.save(splitExpense);
+
+        }else{
+            return null;
+        }
+    }
 }

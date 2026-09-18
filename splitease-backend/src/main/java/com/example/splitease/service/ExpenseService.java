@@ -29,9 +29,11 @@ public class ExpenseService {
                 return expenseRepository.save(expense);
             }
             else{
+                System.out.println("Error 2");
                 return null;
             }
         }else{
+            System.out.println("Error 1");
             return null;
         }
     }
