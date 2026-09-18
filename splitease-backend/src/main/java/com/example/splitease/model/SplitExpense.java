@@ -39,7 +39,6 @@ public class SplitExpense {
 
     @ColumnDefault("'DUE'")
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(32) default 'DUE'")
     private PaymentStatus status;
 
 
